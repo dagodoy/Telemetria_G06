@@ -1,0 +1,1 @@
+Telemetria_G06
