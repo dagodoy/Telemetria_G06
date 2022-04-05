@@ -2,26 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Grupo06
+public class Telemetria : MonoBehaviour
 {
-    public class Telemetria : MonoBehaviour
+    // Start is called before the first frame update
+    void Start()
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        public int a()
-        {
-            return 1;
-        }
+        
     }
-}
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+}

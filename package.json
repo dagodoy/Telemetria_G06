@@ -1,7 +1,9 @@
 {
-    "name": "com.grupo06.telemetria",
-    "version": "1.0.0",
-    "displayName": "Telemetria_G6",
-    "description": "Sistema de telemetria",
-    "unity": "2020.3.13f1"
+  "name": "com.grupo06.telemetria",
+  "version": "1.0.0",
+  "displayName": "Telemetria_G6",
+  "description": "Sistema de telemetria",
+  "unity": "2020.3",
+  "unityRelease": "13f1",
+  "type": "tool"
 }
