@@ -1,0 +1,7 @@
+{
+    "name": "com.grupo06.telemetria",
+    "version": "1.0.0",
+    "displayName": "Telemetria_G6",
+    "description": "Sistema de telemetria",
+    "unity": "2020.3.13f1"
+}
