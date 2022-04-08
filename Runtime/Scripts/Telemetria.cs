@@ -8,7 +8,14 @@ namespace Grupo06
     {
         private static Telemetria instance = null;
 
-        private Telemetria() { }
+        private Persistence[] persistences;
+
+        private Telemetria() 
+        {
+            persistences = new Persistence[1];
+            persistences[0] = new FilePersistence(new JsonSerializer());
+
+        }
 
         public static Telemetria Instance
         {
@@ -20,6 +27,11 @@ namespace Grupo06
                 }
                 return instance;
             }
+        }
+
+        public void TrackEvent()
+        {
+
         }
 
         public LevelStartEvent LevelStart()

@@ -5,17 +5,24 @@ using UnityEngine;
 namespace Grupo06
 {
     //sistema de persistencia síncrono
-    public interface Persistence
+    public abstract class Persistence
     {
-        public void Send(Event e);
+        public Persistence(Serializer s)
+        {
+            serializer = s;
+        }
+        public abstract void Send(Event e);
+        protected Serializer serializer;
+
     }
 
     public class FilePersistence : Persistence
     {
-        public void Send(Event e)
+        public FilePersistence(Serializer s) : base(s) { }
+        public override void Send(Event e)
         {
-            //llamar a la serializacion
-
+            serializer.Serialize(e);
         }
+
     }
 }
