@@ -21,7 +21,8 @@ namespace Grupo06
         public FilePersistence(Serializer s) : base(s) { }
         public override void Send(Event e)
         {
-            serializer.Serialize(e);
+            string s = serializer.Serialize(e);
+            //Aqui tiene que guardar el string en un archivo
         }
 
     }

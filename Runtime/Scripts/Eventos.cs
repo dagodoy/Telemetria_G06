@@ -13,18 +13,7 @@ namespace Grupo06
             tiempo = Time.realtimeSinceStartup;
             sesion = UnityEngine.Analytics.AnalyticsSessionInfo.sessionId;
         }
-
-        public Event Sesion(long s)
-        {
-            sesion = s;
-            return this;
-        }
-
-        public Event Tiempo(float t)
-        {
-            tiempo = t;
-            return this;
-        }
+        public virtual string toJson() { return "pingo"; }
     }
 
     public class LevelStartEvent : Event
@@ -35,6 +24,11 @@ namespace Grupo06
         {
             nivel = n;
             return this;
+        }
+
+        public override string toJson()
+        {
+            return "LevelStart " + base.toJson() + nivel; 
         }
     }
 

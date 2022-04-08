@@ -13,9 +13,7 @@ namespace Grupo06
     {
         public string Serialize(Event e)
         {
-            string s = "comemelosjotasones";
-
-            return s;
+            return e.toJson();
         }
     }
     public class CSVSerializer : Serializer
