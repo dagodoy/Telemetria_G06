@@ -47,6 +47,4 @@ namespace Grupo06
             return new CollisionEvent();
         }
     }
-
-
 }

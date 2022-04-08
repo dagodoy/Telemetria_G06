@@ -7,9 +7,14 @@ namespace Grupo06
     public abstract class Event
     {
         public float tiempo;
-        public int sesion;
+        public long sesion;
+        public Event()
+        {
+            tiempo = Time.realtimeSinceStartup;
+            sesion = UnityEngine.Analytics.AnalyticsSessionInfo.sessionId;
+        }
 
-        public Event Sesion(int s)
+        public Event Sesion(long s)
         {
             sesion = s;
             return this;
