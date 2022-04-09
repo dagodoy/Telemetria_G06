@@ -6,7 +6,10 @@ namespace Grupo06
 {
     public abstract class Event
     {
+        public enum tipoEvento { LEVELSTART, LEVELEND, PAUSE, DEATH, JUMP, COLLISION }
+
         public float tiempo;
+        public tipoEvento tipo;
         public long sesion;
         public Event()
         {
@@ -19,6 +22,10 @@ namespace Grupo06
     public class LevelStartEvent : Event
     {
         public int nivel;
+        public LevelStartEvent()
+        {
+            tipo = tipoEvento.LEVELSTART;
+        }
 
         public LevelStartEvent Nivel(int n)
         {
@@ -36,6 +43,11 @@ namespace Grupo06
     {
         public int nivel;
 
+        public LevelEndEvent()
+        {
+            tipo = tipoEvento.LEVELEND;
+        }
+
         public LevelEndEvent Nivel(int n)
         {
             nivel = n;
@@ -43,12 +55,22 @@ namespace Grupo06
         }
     }
 
-    public class PauseEvent : Event { }
+    public class PauseEvent : Event {
+        public PauseEvent()
+        {
+            tipo = tipoEvento.PAUSE;
+        }
+    }
 
     public class DeathEvent : Event
     {
         public float x;
         public float y;
+
+        public DeathEvent()
+        {
+            tipo = tipoEvento.DEATH;
+        }
 
         public DeathEvent X(float X)
         {
@@ -68,6 +90,11 @@ namespace Grupo06
         public float x;
         public float y;
 
+        public JumpEvent()
+        {
+            tipo = tipoEvento.JUMP;
+        }
+
         public JumpEvent X(float X)
         {
             x = X;
@@ -85,6 +112,11 @@ namespace Grupo06
     {
         public int id;
         public string tag;
+
+        public CollisionEvent()
+        {
+            tipo = tipoEvento.COLLISION;
+        }
 
         public CollisionEvent Id(int identificador)
         {
