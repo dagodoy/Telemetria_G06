@@ -9,6 +9,7 @@ namespace Grupo06
     public interface Serializer
     {
         public string Serialize(Event e);
+        public string getExtension();
     }
 
     public class JsonSerializer : Serializer
@@ -17,6 +18,11 @@ namespace Grupo06
         public string Serialize(Event e)
         {
             return JsonUtility.ToJson(e);
+        }
+
+        public string getExtension()
+        {
+            return ".json";
         }
     }
     public class CSVSerializer : Serializer
@@ -27,6 +33,12 @@ namespace Grupo06
 
             return s;
         }
+
+        public string getExtension()
+        {
+            return ".csv";
+        }
+
     }
 
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace Grupo06
 {
@@ -23,6 +24,15 @@ namespace Grupo06
         {
             string s = serializer.Serialize(e);
             //Aqui tiene que guardar el string en un archivo
+            string directory = Application.persistentDataPath + "/Telemetria_G06" + "/HW_" + SystemInfo.deviceUniqueIdentifier; //directory
+            string name = "/ID_" + e.sesion + serializer.getExtension(); //name
+
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            StreamWriter writer = new StreamWriter(directory + name);
+            writer.WriteLine(s);
+            writer.Close();
         }
 
     }
