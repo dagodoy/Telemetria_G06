@@ -16,17 +16,7 @@ namespace Grupo06
 
         public string Serialize(Event e)
         {
-            DataContractJsonSerializer js = new DataContractJsonSerializer(e.GetType());
-
-            MemoryStream msObj = new MemoryStream();
-            js.WriteObject(msObj, e);
-            msObj.Position = 0;
-            
-            StreamReader sr = new StreamReader(msObj);
-            string json = sr.ReadToEnd();
-
-            sr.Close();
-            msObj.Close();
+            string json = JsonUtility.ToJson(e);
 
             return json;
         }
