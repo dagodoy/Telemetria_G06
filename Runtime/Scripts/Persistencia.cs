@@ -30,10 +30,15 @@ namespace Grupo06
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
 
-            StreamWriter writer = new StreamWriter(directory + name);
+            FileStream fs;
+            if (!File.Exists(directory + name))
+                fs = File.Open(directory + name, FileMode.Create);
+            else
+                fs = File.Open(directory + name, FileMode.Append);
+
+            StreamWriter writer = new StreamWriter(fs);
             writer.WriteLine(s);
             writer.Close();
         }
-
     }
 }
