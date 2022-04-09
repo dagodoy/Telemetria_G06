@@ -16,9 +16,9 @@ namespace Grupo06
 
         public string Serialize(Event e)
         {
-            string json = JsonUtility.ToJson(e);
+            string json = 
 
-            return json;
+            return JsonUtility.ToJson(e); ;
         }
     }
     public class CSVSerializer : Serializer
