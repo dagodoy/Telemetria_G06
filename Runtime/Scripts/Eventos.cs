@@ -124,7 +124,7 @@ namespace Grupo06
             return this;
         }
 
-        public CollisionEvent Id(string etiqueta)
+        public CollisionEvent Tag(string etiqueta)
         {
             tag = etiqueta;
             return this;

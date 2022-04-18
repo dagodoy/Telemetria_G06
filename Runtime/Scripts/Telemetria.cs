@@ -4,17 +4,11 @@ using UnityEngine;
 
 namespace Grupo06
 {
-    public class Telemetria : MonoBehaviour
+    public class Telemetria
     {
         private static Telemetria instance = null;
 
         private Persistence[] persistences;
-
-        private Telemetria() 
-        {
-            persistences = new Persistence[1];
-            persistences[0] = new FilePersistence(new JsonSerializer());
-        }
 
         public static Telemetria Instance
         {
@@ -23,6 +17,8 @@ namespace Grupo06
                 if (instance == null)
                 {
                     instance = new Telemetria();
+                    instance.persistences = new Persistence[1];
+                    instance.persistences[0] = new FilePersistence(new JsonSerializer());
                 }
                 return instance;
             }
