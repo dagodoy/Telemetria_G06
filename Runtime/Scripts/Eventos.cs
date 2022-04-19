@@ -8,8 +8,8 @@ namespace Grupo06
     {
         public enum tipoEvento { SESSIONSTART, SESSIONEND, LEVELSTART, LEVELEND, PAUSE, DEATH, JUMP, COLLISION }
 
-        public float tiempo;
         public tipoEvento tipo;
+        public float tiempo;
         public long sesion;
         public Event()
         {
@@ -28,6 +28,7 @@ namespace Grupo06
     }
     public class LevelStartEvent : Event
     {
+        //Guarda el indice de la escena en la que ocurre
         public int nivel;
         public LevelStartEvent()
         {

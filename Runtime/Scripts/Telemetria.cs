@@ -23,10 +23,6 @@ namespace Grupo06
                 return instance;
             }
         }
-        //~Telemetria()
-        //{
-        //    instance.TrackEvent(new SessionEndEvent());
-        //}
 
         public void TrackEvent(Event e)
         {
