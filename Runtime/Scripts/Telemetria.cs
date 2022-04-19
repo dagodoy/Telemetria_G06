@@ -19,10 +19,15 @@ namespace Grupo06
                     instance = new Telemetria();
                     instance.persistences = new Persistence[1];
                     instance.persistences[0] = new FilePersistence(new JsonSerializer());
+                    instance.TrackEvent(new SessionStartEvent());
                 }
                 return instance;
             }
         }
+        //~Telemetria()
+        //{
+        //    instance.TrackEvent(new SessionEndEvent());
+        //}
 
         public void TrackEvent(Event e)
         {

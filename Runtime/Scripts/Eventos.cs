@@ -6,7 +6,7 @@ namespace Grupo06
 {
     public abstract class Event
     {
-        public enum tipoEvento { LEVELSTART, LEVELEND, PAUSE, DEATH, JUMP, COLLISION }
+        public enum tipoEvento { SESSIONSTART, SESSIONEND, LEVELSTART, LEVELEND, PAUSE, DEATH, JUMP, COLLISION }
 
         public float tiempo;
         public tipoEvento tipo;
@@ -16,9 +16,16 @@ namespace Grupo06
             tiempo = Time.realtimeSinceStartup;
             sesion = UnityEngine.Analytics.AnalyticsSessionInfo.sessionId;
         }
-        public virtual string toJson() { return "pingo"; }
     }
 
+    public class SessionStartEvent : Event
+    {
+        public SessionStartEvent() { tipo = tipoEvento.SESSIONSTART; }
+    }
+    public class SessionEndEvent : Event
+    {
+        public SessionEndEvent() { tipo = tipoEvento.SESSIONEND; }
+    }
     public class LevelStartEvent : Event
     {
         public int nivel;
@@ -33,10 +40,6 @@ namespace Grupo06
             return this;
         }
 
-        public override string toJson()
-        {
-            return "LevelStart " + base.toJson() + nivel; 
-        }
     }
 
     public class LevelEndEvent : Event
