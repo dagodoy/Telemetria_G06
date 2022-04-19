@@ -19,7 +19,6 @@ namespace Grupo06
                     instance = new Telemetria();
                     instance.persistences = new Persistence[1];
                     instance.persistences[0] = new FilePersistence(new JsonSerializer());
-                    instance.TrackEvent(new SessionStartEvent());
                 }
                 return instance;
             }
@@ -31,12 +30,20 @@ namespace Grupo06
 
         public void TrackEvent(Event e)
         {
+            Debug.Log(e.tipo);
             foreach(Persistence persistence in persistences)
             {
                 persistence.Send(e);
             }
         }
-
+        public SessionStartEvent SessionStart()
+        {
+            return new SessionStartEvent();
+        }
+        public SessionEndEvent SessionEnd()
+        {
+            return new SessionEndEvent();
+        }
         public LevelStartEvent LevelStart()
         {
             return new LevelStartEvent();
