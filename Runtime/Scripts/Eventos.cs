@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Grupo06
 {
+    [System.Serializable]
     public abstract class Event
     {
         public enum tipoEvento { SESSIONSTART, SESSIONEND, LEVELSTART, LEVELEND, PAUSE, DEATH, JUMP, COLLISION }
@@ -17,15 +18,17 @@ namespace Grupo06
             sesion = UnityEngine.Analytics.AnalyticsSessionInfo.sessionId;
         }
     }
-
+    [System.Serializable]
     public class SessionStartEvent : Event
     {
         public SessionStartEvent() { tipo = tipoEvento.SESSIONSTART; }
     }
+    [System.Serializable]
     public class SessionEndEvent : Event
     {
         public SessionEndEvent() { tipo = tipoEvento.SESSIONEND; }
     }
+    [System.Serializable]
     public class LevelStartEvent : Event
     {
         //Guarda el indice de la escena en la que ocurre
@@ -43,6 +46,7 @@ namespace Grupo06
 
     }
 
+    [System.Serializable]
     public class LevelEndEvent : Event
     {
         public int nivel;
@@ -59,6 +63,7 @@ namespace Grupo06
         }
     }
 
+    [System.Serializable]
     public class PauseEvent : Event {
         public PauseEvent()
         {
@@ -66,6 +71,7 @@ namespace Grupo06
         }
     }
 
+    [System.Serializable]
     public class DeathEvent : Event
     {
         public float x;
@@ -89,6 +95,7 @@ namespace Grupo06
         }
     }
 
+    [System.Serializable]
     public class JumpEvent : Event
     {
         public float x;
@@ -112,6 +119,7 @@ namespace Grupo06
         }
     }
 
+    [System.Serializable]
     public class CollisionEvent : Event
     {
         public int id;

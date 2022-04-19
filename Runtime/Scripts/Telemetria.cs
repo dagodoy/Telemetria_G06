@@ -17,8 +17,9 @@ namespace Grupo06
                 if (instance == null)
                 {
                     instance = new Telemetria();
-                    instance.persistences = new Persistence[1];
+                    instance.persistences = new Persistence[2];
                     instance.persistences[0] = new FilePersistence(new JsonSerializer());
+                    instance.persistences[1] = new FilePersistence(new BinarySerializer());
                 }
                 return instance;
             }
