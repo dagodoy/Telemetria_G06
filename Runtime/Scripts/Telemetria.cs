@@ -27,7 +27,7 @@ namespace Grupo06
 
         public void TrackEvent(Event e)
         {
-            Debug.Log(e.tipo);
+            //Debug.Log(e.name);
             foreach(Persistence persistence in persistences)
             {
                 persistence.Send(e);
@@ -52,6 +52,10 @@ namespace Grupo06
         public PauseEvent Pause()
         {
             return new PauseEvent();
+        }
+        public UnPauseEvent UnPause()
+        {
+            return new UnPauseEvent();
         }
         public DeathEvent Death()
         {

@@ -7,9 +7,10 @@ namespace Grupo06
     [System.Serializable]
     public abstract class Event
     {
-        public enum tipoEvento { SESSIONSTART, SESSIONEND, LEVELSTART, LEVELEND, PAUSE, DEATH, JUMP, COLLISION }
+        public enum tipoEvento { SESSION_START, SESSION_END, LEVEL_START, LEVEL_END, PAUSE, UNPAUSE, DEATH, JUMP, COLLISION }
 
-        public tipoEvento tipo;
+        protected tipoEvento tipo;
+        public string nombre;
         public float tiempo;
         public long sesion;
         public Event()
@@ -21,12 +22,14 @@ namespace Grupo06
     [System.Serializable]
     public class SessionStartEvent : Event
     {
-        public SessionStartEvent() { tipo = tipoEvento.SESSIONSTART; }
+        public SessionStartEvent() { tipo = tipoEvento.SESSION_START; nombre = tipo.ToString();
+        }
     }
     [System.Serializable]
     public class SessionEndEvent : Event
     {
-        public SessionEndEvent() { tipo = tipoEvento.SESSIONEND; }
+        public SessionEndEvent() { tipo = tipoEvento.SESSION_END; nombre = tipo.ToString();
+        }
     }
     [System.Serializable]
     public class LevelStartEvent : Event
@@ -35,7 +38,9 @@ namespace Grupo06
         public int nivel;
         public LevelStartEvent()
         {
-            tipo = tipoEvento.LEVELSTART;
+            tipo = tipoEvento.LEVEL_START;
+            nombre = tipo.ToString();
+
         }
 
         public LevelStartEvent Nivel(int n)
@@ -53,7 +58,9 @@ namespace Grupo06
 
         public LevelEndEvent()
         {
-            tipo = tipoEvento.LEVELEND;
+            tipo = tipoEvento.LEVEL_END;
+            nombre = tipo.ToString();
+
         }
 
         public LevelEndEvent Nivel(int n)
@@ -68,6 +75,19 @@ namespace Grupo06
         public PauseEvent()
         {
             tipo = tipoEvento.PAUSE;
+            nombre = tipo.ToString();
+
+        }
+    }
+
+    [System.Serializable]
+    public class UnPauseEvent : Event
+    {
+        public UnPauseEvent()
+        {
+            tipo = tipoEvento.UNPAUSE;
+            nombre = tipo.ToString();
+
         }
     }
 
@@ -80,6 +100,8 @@ namespace Grupo06
         public DeathEvent()
         {
             tipo = tipoEvento.DEATH;
+            nombre = tipo.ToString();
+
         }
 
         public DeathEvent X(float X)
@@ -104,6 +126,8 @@ namespace Grupo06
         public JumpEvent()
         {
             tipo = tipoEvento.JUMP;
+            nombre = tipo.ToString();
+
         }
 
         public JumpEvent X(float X)
@@ -128,6 +152,8 @@ namespace Grupo06
         public CollisionEvent()
         {
             tipo = tipoEvento.COLLISION;
+            nombre = tipo.ToString();
+
         }
 
         public CollisionEvent Id(int identificador)
