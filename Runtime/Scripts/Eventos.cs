@@ -7,7 +7,7 @@ namespace Grupo06
     [System.Serializable]
     public abstract class Event
     {
-        public enum tipoEvento { SESSION_START, SESSION_END, LEVEL_START, LEVEL_END, PAUSE, UNPAUSE, DEATH, JUMP, COLLISION }
+        public enum tipoEvento { SESSION_START, SESSION_END, LEVEL_START, LEVEL_END, PAUSE, UNPAUSE, DEATH, JUMP, COLLISION, PLAYER_POSITION}
 
         protected tipoEvento tipo;
         public string nombre;
@@ -168,5 +168,32 @@ namespace Grupo06
             return this;
         }
     }
+    [System.Serializable]
+    public class PlayerPosEvent : Event
+    {
+        public float x;
+        public float y;
+
+        public PlayerPosEvent()
+        {
+            tipo = tipoEvento.PLAYER_POSITION;
+            nombre = tipo.ToString();
+
+        }
+
+        public PlayerPosEvent X(float X)
+        {
+            x = X;
+            return this;
+        }
+
+        public PlayerPosEvent Y(float Y)
+        {
+            y = Y;
+            return this;
+        }
+    }
+
+
 }
 

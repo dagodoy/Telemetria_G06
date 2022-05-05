@@ -69,5 +69,9 @@ namespace Grupo06
         {
             return new CollisionEvent();
         }
+        public PlayerPosEvent PlayerPosition()
+        {
+            return new PlayerPosEvent();
+        }
     }
 }
