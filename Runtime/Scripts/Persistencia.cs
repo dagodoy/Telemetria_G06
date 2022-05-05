@@ -24,7 +24,9 @@ namespace Grupo06
         {
             string s = serializer.Serialize(e);
             //Aqui tiene que guardar el string en un archivo
-            string directory = Application.persistentDataPath + "/Telemetria_G06" + "/HW_" + SystemInfo.deviceUniqueIdentifier; //directory
+            //string directory = Application.persistentDataPath + "/Telemetria_G06" + "/HW_" + SystemInfo.deviceUniqueIdentifier; //directory
+            //DIRECTORIO A PELO CAMBIARLO PARA QUE ESTE BIEN
+            string directory = "../Pruebas"+ "/Telemetria_G06" + "/HW_" + SystemInfo.deviceUniqueIdentifier;
             string name = "/ID_" + e.sesion + serializer.getExtension(); //name
 
             if (!Directory.Exists(directory))
