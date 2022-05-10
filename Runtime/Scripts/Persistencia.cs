@@ -19,15 +19,13 @@ namespace Grupo06
 
     public class FilePersistence : Persistence
     {
-        public FilePersistence(Serializer s) : base(s) { }
-        public override void Send(Event e)
+        public FilePersistence(Serializer s) : base(s) 
         {
-            string s = serializer.Serialize(e);
-            //Aqui tiene que guardar el string en un archivo
-            //string directory = Application.persistentDataPath + "/Telemetria_G06" + "/HW_" + SystemInfo.deviceUniqueIdentifier; //directory
-
-            string directory = "./Resultado del test";
-            string name = "/ID_" + e.sesion + serializer.getExtension(); //name
+            CreateDirectory();
+        }
+        void CreateDirectory()
+        {
+            directory = "./Resultado del test";
 
             if (Directory.Exists(directory))
             {
@@ -40,16 +38,25 @@ namespace Grupo06
 
             }
             Directory.CreateDirectory(directory);
+        }
+        public override void Send(Event e)
+        {
+            string s = serializer.Serialize(e);
+            //Aqui tiene que guardar el string en un archivo
+            //string directory = Application.persistentDataPath + "/Telemetria_G06" + "/HW_" + SystemInfo.deviceUniqueIdentifier; //directory
 
+            string fileName = "/ID_" + e.sesion + serializer.getExtension(); //name
             FileStream fs;
-            if (!File.Exists(directory + name))
-                fs = File.Open(directory + name, FileMode.Create);
+            if (!File.Exists(directory + fileName))
+                fs = File.Open(directory + fileName, FileMode.Create);
             else
-                fs = File.Open(directory + name, FileMode.Append);
+                fs = File.Open(directory + fileName, FileMode.Append);
 
             StreamWriter writer = new StreamWriter(fs);
             writer.WriteLine(s);
             writer.Close();
         }
+
+        string directory;
     }
 }
