@@ -25,12 +25,21 @@ namespace Grupo06
             string s = serializer.Serialize(e);
             //Aqui tiene que guardar el string en un archivo
             //string directory = Application.persistentDataPath + "/Telemetria_G06" + "/HW_" + SystemInfo.deviceUniqueIdentifier; //directory
-            //DIRECTORIO A PELO CAMBIARLO PARA QUE ESTE BIEN
+
             string directory = "./Resultado del test";
             string name = "/ID_" + e.sesion + serializer.getExtension(); //name
 
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
+            if (Directory.Exists(directory))
+            {
+                string[] files = Directory.GetFiles(directory);
+                foreach (string file in files)
+                {
+                    File.Delete(file);
+                }
+                Directory.Delete(directory);
+
+            }
+            Directory.CreateDirectory(directory);
 
             FileStream fs;
             if (!File.Exists(directory + name))
