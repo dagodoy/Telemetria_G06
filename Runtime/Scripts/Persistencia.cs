@@ -16,6 +16,7 @@ namespace Grupo06
         protected Serializer serializer;
 
     }
+<<<<<<< Updated upstream
 
     public class FilePersistence : Persistence
     {
@@ -59,4 +60,6 @@ namespace Grupo06
 
         string directory;
     }
+=======
+>>>>>>> Stashed changes
 }
