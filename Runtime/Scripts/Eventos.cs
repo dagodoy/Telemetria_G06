@@ -9,7 +9,7 @@ namespace Grupo06
     {
         public enum tipoEvento { SESSION_START, SESSION_END, LEVEL_START, LEVEL_END, PAUSE, UNPAUSE, DEATH, JUMP, COLLISION, PLAYER_POSITION}
 
-        protected tipoEvento tipo;
+        public tipoEvento tipo;
         public string nombre;
         public float tiempo;
         public long sesion;

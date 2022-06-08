@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Collections.Concurrent;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Grupo06
 {
@@ -11,6 +14,9 @@ namespace Grupo06
         public FilePersistence(Serializer s) : base(s)
         {
             CreateDirectory();
+            cola  = new ConcurrentQueue<string>();
+            Thread t = new Thread(new ThreadStart(PersistThread));
+            t.Start();
         }
         void CreateDirectory()
         {
@@ -28,13 +34,10 @@ namespace Grupo06
             }
             Directory.CreateDirectory(directory);
         }
-        public override void Send(Event e)
-        {
-            string s = serializer.Serialize(e);
-            //Aqui tiene que guardar el string en un archivo
-            //string directory = Application.persistentDataPath + "/Telemetria_G06" + "/HW_" + SystemInfo.deviceUniqueIdentifier; //directory
 
-            string fileName = "/ID_" + e.sesion + serializer.getExtension(); //name
+        public override void Persist()
+        {
+            string fileName = "/ID_" + sesion + serializer.getExtension(); //name
             FileStream fs;
             if (!File.Exists(directory + fileName))
                 fs = File.Open(directory + fileName, FileMode.Create);
@@ -42,8 +45,27 @@ namespace Grupo06
                 fs = File.Open(directory + fileName, FileMode.Append);
 
             StreamWriter writer = new StreamWriter(fs);
-            writer.WriteLine(s);
+
+            while (cola.Count > 0)
+            {
+                string s;
+                if (cola.TryDequeue(out s))
+                {                    
+                    writer.WriteLine(s);
+                }
+            }
+
             writer.Close();
+        }
+
+
+        public override void Send(Event e)
+        {
+            string s = serializer.Serialize(e);
+            if (e.tipo == Event.tipoEvento.SESSION_END)
+                exit = true;
+            sesion = e.sesion;
+            cola.Enqueue(s);
         }
 
         string directory;
