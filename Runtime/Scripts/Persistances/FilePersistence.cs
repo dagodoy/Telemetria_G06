@@ -13,8 +13,7 @@ namespace Grupo06
     {
         public FilePersistence(Serializer s) : base(s)
         {
-            CreateDirectory();
-            cola  = new ConcurrentQueue<string>();
+            cola = new ConcurrentQueue<string>();
             Thread t = new Thread(new ThreadStart(PersistThread));
             t.Start();
         }
@@ -33,29 +32,24 @@ namespace Grupo06
 
             }
             Directory.CreateDirectory(directory);
+
+            //create stream
+            string fileName = "/ID_" + sesion + serializer.getExtension(); //name
+            FileStream fs;
+            fs = File.Open(directory + fileName, FileMode.Create);
+            _streamWriter = new StreamWriter(fs);
         }
 
         public override void Persist()
         {
-            string fileName = "/ID_" + sesion + serializer.getExtension(); //name
-            FileStream fs;
-            if (!File.Exists(directory + fileName))
-                fs = File.Open(directory + fileName, FileMode.Create);
-            else
-                fs = File.Open(directory + fileName, FileMode.Append);
-
-            StreamWriter writer = new StreamWriter(fs);
-
             while (cola.Count > 0)
             {
                 string s;
                 if (cola.TryDequeue(out s))
-                {                    
-                    writer.WriteLine(s);
+                {
+                    _streamWriter.WriteLine(s);
                 }
             }
-
-            writer.Close();
         }
 
 
@@ -64,7 +58,11 @@ namespace Grupo06
             string s = serializer.Serialize(e);
             if (e.tipo == Event.tipoEvento.SESSION_END)
                 exit = true;
-            sesion = e.sesion;
+            if (sesion == 0) //primer mensaje de todos
+            {
+                sesion = e.sesion;
+                CreateDirectory();
+            }
             cola.Enqueue(s);
         }
 

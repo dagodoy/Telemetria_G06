@@ -37,6 +37,7 @@ namespace Grupo06
         public abstract void Persist();
         protected Serializer serializer;
         protected ConcurrentQueue<string> cola;
+        protected StreamWriter _streamWriter;
         protected long sesion;
         protected double milisecondsToPersist = 1000;
         protected double elapsedTime = 0;
