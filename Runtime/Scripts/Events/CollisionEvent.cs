@@ -8,7 +8,6 @@ namespace Grupo06
     public class CollisionEvent : Event
     {
         public int id;
-        public string tag;
 
         public CollisionEvent()
         {
@@ -20,12 +19,6 @@ namespace Grupo06
         public CollisionEvent Id(int identificador)
         {
             id = identificador;
-            return this;
-        }
-
-        public CollisionEvent Tag(string etiqueta)
-        {
-            tag = etiqueta;
             return this;
         }
     }

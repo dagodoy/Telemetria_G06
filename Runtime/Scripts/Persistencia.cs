@@ -33,6 +33,7 @@ namespace Grupo06
 
             }
             Persist();
+            _streamWriter.Close();
         }
         public abstract void Persist();
         protected Serializer serializer;
